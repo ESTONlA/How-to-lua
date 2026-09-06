@@ -74,7 +74,11 @@ Host uses `/bonus` in game chat. Commands are intentionally host-only in this fi
 
 See the [GitHub Wiki](https://github.com/ESTONlA/How-to-lua/wiki) or [local Wiki source](wiki/Home.md) for the API documentation.
 
-Version 0.1.0 is an early beta. The build and Lua execution tests pass; multiplayer behavior and the native menu still need an in-game test.
+Version 0.1.1 is an early beta. The build and Lua execution tests pass; multiplayer behavior and the native menu still need an in-game test.
+
+### 0.1.1 Compatibility Fix
+
+The package now uses MoonSharp's `net40-client` binary, fixing the `System.Collections, Version=4.0.10.0` / `Table:m_Values` load error from 0.1.0. Replace both DLLs and fully restart the game. Reload Lua Mods cannot replace an already loaded interpreter assembly. Keep your Lua scripts and saved configuration files.
 
 ## Development Notes
 
@@ -101,3 +105,5 @@ dotnet build HowToLua.csproj -c Release
 Copy the framework DLL and its MoonSharp dependency from `bin/Release` into the BepInEx plugin folder.
 
 Run `dotnet run --project tests/SmokeTests.csproj -c Release` for Lua smoke tests. `./Build-Package.ps1` builds an installable ZIP containing both DLLs, the MoonSharp license, README, and an optional example.
+
+`MoonSharp.Reference.props` selects `lib/net40-client/MoonSharp.Interpreter.dll` for both the plugin and tests. Keep this explicit reference: NuGet's automatically selected `netstandard1.6` build requires facade assemblies absent from the game. Packaging also runs a fresh Windows PowerShell check against the staged DLL to verify its references and execute Lua table/callback code under .NET Framework.

@@ -21,7 +21,7 @@ public sealed class HowToLuaPlugin : BaseUnityPlugin
 {
     private const string PluginGuid = "estonia.howtofish.howtolua";
     private const string PluginName = "How to Lua";
-    private const string PluginVersion = "0.1.0";
+    private const string PluginVersion = "0.1.1";
     private const string Author = "Estonia";
     private static readonly BindingFlags PrivateStatic = BindingFlags.NonPublic | BindingFlags.Static;
     private static readonly BindingFlags PrivateInstance = BindingFlags.NonPublic | BindingFlags.Instance;

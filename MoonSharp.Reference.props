@@ -1,0 +1,10 @@
+<Project>
+  <ItemGroup>
+    <!-- Unity's Mono runtime needs the classic framework build, not NuGet's netstandard1.6 asset. -->
+    <PackageReference Include="MoonSharp" Version="2.0.0" GeneratePathProperty="true" ExcludeAssets="compile;runtime" PrivateAssets="all" />
+    <Reference Include="$(PkgMoonSharp)/lib/net40-client/MoonSharp.Interpreter.dll">
+      <HintPath>$(PkgMoonSharp)/lib/net40-client/MoonSharp.Interpreter.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+  </ItemGroup>
+</Project>

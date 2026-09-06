@@ -19,6 +19,10 @@ void Reject(Action action, string name)
 }
 
 Script script = LuaExecution.CreateScript();
+var references = typeof(Script).Assembly.GetReferencedAssemblies();
+Check(Array.Exists(references, x => x.Name == "mscorlib") &&
+      !Array.Exists(references, x => x.Name == "System.Collections" || x.Name == "System.Runtime"),
+      "MoonSharp uses classic framework references compatible with Unity Mono");
 LuaExecution.Run(script, script.LoadString("answer = tonumber('42'); words = tostring(answer)"));
 Check(script.Globals.Get("answer").Number == 42, "basic Lua execution");
 foreach (string global in new[] { "io", "os", "debug", "require", "loadfile", "dofile", "luanet", "coroutine" })

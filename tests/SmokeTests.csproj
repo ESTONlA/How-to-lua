@@ -4,7 +4,7 @@
     <TargetFramework>net10.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="MoonSharp" Version="2.0.0" />
     <Compile Include="../src/LuaExecution.cs" Link="LuaExecution.cs" />
   </ItemGroup>
+  <Import Project="../MoonSharp.Reference.props" />
 </Project>
