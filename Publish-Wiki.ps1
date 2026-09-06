@@ -8,7 +8,8 @@ try {
     git -C .wiki-publish pull --ff-only origin master
     if ($LASTEXITCODE -ne 0) { throw 'Wiki pull failed; resolve its changes before publishing.' }
     Copy-Item wiki/*.md -Destination .wiki-publish -Force
-    git -C .wiki-publish add Home.md Installation.md Creating-a-Mod.md Lua-API.md Events.md _Sidebar.md
+    $wikiPages = @(Get-ChildItem wiki -Filter '*.md' -File | Select-Object -ExpandProperty Name)
+    git -C .wiki-publish add -- $wikiPages
     if ($LASTEXITCODE -ne 0) { throw 'Wiki staging failed.' }
     git -C .wiki-publish diff --cached --quiet
     if ($LASTEXITCODE -eq 1) {
