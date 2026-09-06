@@ -1,0 +1,8 @@
+bin/
+obj/
+release/*.dll
+release/*.pdb
+.wiki-publish/
+release/
+**/bin/
+**/obj/
