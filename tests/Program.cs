@@ -4,6 +4,12 @@ using System.Collections.Generic;
 using HowToLua;
 using MoonSharp.Interpreter;
 
+if (args.Length == 1 && args[0] == "--coverage")
+{
+    MethodCoverage.Generate(Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "../../../../")));
+    return;
+}
+
 int passed = 0;
 void Check(bool value, string name)
 {

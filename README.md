@@ -1,8 +1,39 @@
 # How to Lua
+
+[![Game method integration](coverage/method-coverage.svg)](coverage/README.md)
+[![Game events: 27](https://img.shields.io/badge/game_events-27-0891b2?style=flat-square)](wiki/Events.md)
+[![Hook targets: 17](https://img.shields.io/badge/hook_targets-17-6366f1?style=flat-square)](wiki/Architecture.md)
+
 # [Changelog](CHANGELOG.md) | [License](LICENSE)
 **How to Lua** is a BepInEx framework for How to Fish that loads small, manifest-based Lua mods. It uses MoonSharp, so players do not need to install Lua separately.
 
 Lua mods run through a deliberately restricted API. They can react to 27 game events, query players and world state, heal/feed/teleport living players, register host commands and native buttons, schedule work, send chat, award shared money, and save their own string data. They receive plain snapshot tables, not arbitrary C# reflection or raw Unity objects.
+
+## Game Coverage
+
+The badge measures **direct game-method coverage**: unique methods called/read or hooked by the Lua gameplay bridges, divided by the non-constructor methods declared in the installed game's `Assembly-CSharp.dll`.
+
+The generated [coverage report](coverage/README.md) lists the exact count, percentage and every integrated method. The framework currently exposes **27 events**, including **17 method hooks**, plus player/world APIs.
+
+| Game system | Available to Lua |
+| --- | --- |
+| Players | Join/leave, vitals, death/revival, player lookup, healing, feeding and teleporting. |
+| Fishing and creatures | Rod attachments, creature health/deaths, boss spawn/death/despawn and boss snapshots. |
+| Items | Holder changes, sales, cooking, skin changes and item snapshots. |
+| Economy | Balance changes, balance queries and shared-money rewards. |
+| World and sessions | Host start/stop, save requests, island changes/load completion and spawn/world queries. |
+
+This counts actual methods, not documentation. Property accessors and generated networking methods are included in the denominator; Unity/FishNet DLLs are not. Reading a property or observing a hook counts as direct integration, not unrestricted Lua access to that method. Internal calls made by the game are not automatically marked supported. Field reads and native-menu wiring do not increase the method count.
+
+It is **not feature-completion, line coverage or a runtime-test percentage**. Each system is only partially exposed; prefab spawning, arbitrary object editing and custom networking are not implemented.
+
+Recalculate from the current game and framework DLLs after adding support:
+
+```powershell
+dotnet run --project tests/SmokeTests.csproj -c Release -- --coverage
+```
+
+This rebuilds the framework and regenerates the local badge, method list and JSON report in `coverage/`. Commit those files with the code changes to update the GitHub README badge; it does not update itself from a running game.
 
 ## Install
 

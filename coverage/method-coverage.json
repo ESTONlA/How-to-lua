@@ -1,0 +1,259 @@
+{
+  "metric": "Direct game-method integration",
+  "frameworkVersion": "0.2.0",
+  "gameAssembly": "Assembly-CSharp",
+  "gameAssemblySha256": "9BFC0A0F95085D64CA13A6A1943A31B0241472DF6361BC780AEFA8AFB79A59F2",
+  "frameworkAssemblySha256": "0359FD119BBBB2C3D9D3F1B66641D73F53094E0FE33BBF848DB7774297A5B7FD",
+  "integratedMethods": 41,
+  "totalMethods": 4737,
+  "percentage": 0.8655,
+  "rules": "Unique direct calls/reads and Harmony targets in gameplay bridge classes divided by all non-constructor methods declared in Assembly-CSharp.dll. Includes accessors, generated methods and embedded libraries; excludes other assemblies. No transitive calls, UI wiring, field reads or line coverage.",
+  "methods": [
+    {
+      "signature": "BossType Creature::get_BossType()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "Creature BossManager::get_Boss()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "Player Item::get_LastHolder()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "PlayerVitals Player::get_Vitals()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "SaveManager/ServerSaveObject SaveManager::get_CurServerSave()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "Server Server::get_Instance()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Boolean IslandManager::get_IsInitialized()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Boolean IslandManager::get_IsLoading()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Boolean Player::get_IsAfk()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Byte Item::get_ID()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Byte OnlineIslandManager::get_CurIsland()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Collections.IEnumerator IslandManager::ProcessRequest(System.Byte)",
+      "reasons": [
+        "Event/command hook"
+      ]
+    },
+    {
+      "signature": "System.Int32 Item::get_TotalWorth()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Int32 MoneyManager::get_Money()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Int32 PlayerVitals::get_Fullness()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Int32 PlayerVitals::get_Health()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.String Item::GetName()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.String Player::get_SteamName()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.UInt64 Player::get_SteamID()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Void BossManager::InitializeBossFight(Creature)",
+      "reasons": [
+        "Event/command hook"
+      ]
+    },
+    {
+      "signature": "System.Void BossManager::OnBossRemoved()",
+      "reasons": [
+        "Event/command hook"
+      ]
+    },
+    {
+      "signature": "System.Void ChatManager::SendTypedMessage()",
+      "reasons": [
+        "Event/command hook"
+      ]
+    },
+    {
+      "signature": "System.Void Creature::OnHealthChange(System.Int32,System.Int32,System.Boolean)",
+      "reasons": [
+        "Event/command hook"
+      ]
+    },
+    {
+      "signature": "System.Void Item::OnAttachedRodChange(FishingRod,FishingRod,System.Boolean)",
+      "reasons": [
+        "Event/command hook"
+      ]
+    },
+    {
+      "signature": "System.Void Item::OnCooknessChange(System.Single,System.Single,System.Boolean)",
+      "reasons": [
+        "Event/command hook"
+      ]
+    },
+    {
+      "signature": "System.Void Item::OnCurSkinChange(System.Byte,System.Byte,System.Boolean)",
+      "reasons": [
+        "Event/command hook"
+      ]
+    },
+    {
+      "signature": "System.Void Item::OnSyncedHolderChange(Player,Player,System.Boolean)",
+      "reasons": [
+        "Event/command hook"
+      ]
+    },
+    {
+      "signature": "System.Void MoneyManager::AddMoney(System.Int32,Player)",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Void MoneyManager::OnChangeMoney(System.Int32,System.Int32,System.Boolean)",
+      "reasons": [
+        "Event/command hook"
+      ]
+    },
+    {
+      "signature": "System.Void MoneyManager::SellItem(Item)",
+      "reasons": [
+        "Event/command hook"
+      ]
+    },
+    {
+      "signature": "System.Void OnlineIslandManager::OnIslandChange(System.Byte,System.Byte,System.Boolean)",
+      "reasons": [
+        "Event/command hook"
+      ]
+    },
+    {
+      "signature": "System.Void Player::RPCTeleport(FishNet.Connection.NetworkConnection,UnityEngine.Vector3,System.Single)",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Void PlayerVitals::Heal(System.Int32)",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Void PlayerVitals::OnFireChange(System.Int32,System.Int32,System.Boolean)",
+      "reasons": [
+        "Event/command hook"
+      ]
+    },
+    {
+      "signature": "System.Void PlayerVitals::OnFullnessChange(System.Int32,System.Int32,System.Boolean)",
+      "reasons": [
+        "Event/command hook"
+      ]
+    },
+    {
+      "signature": "System.Void PlayerVitals::OnHealthChange(System.Int32,System.Int32,System.Boolean)",
+      "reasons": [
+        "Event/command hook"
+      ]
+    },
+    {
+      "signature": "System.Void PlayerVitals::OnPoisonChange(System.Int32,System.Int32,System.Boolean)",
+      "reasons": [
+        "Event/command hook"
+      ]
+    },
+    {
+      "signature": "System.Void PlayerVitals::RestoreFullness(System.Int32)",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Void SaveManager::SaveServer(System.Boolean)",
+      "reasons": [
+        "Event/command hook"
+      ]
+    },
+    {
+      "signature": "System.Void Server::SendChatMessage(System.String,FishNet.Connection.NetworkConnection)",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "UnityEngine.Transform Player::get_Transform()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    }
+  ]
+}
