@@ -1,5 +1,5 @@
 # How to Lua
-
+# [Changelog](CHANGELOG.md) | [License](LICENSE)
 **How to Lua** is a BepInEx framework for How to Fish that loads small, manifest-based Lua mods. It uses MoonSharp, so players do not need to install Lua separately.
 
 Lua mods run through a deliberately restricted API. They can react to 27 game events, query players and world state, heal/feed/teleport living players, register host commands and native buttons, schedule work, send chat, award shared money, and save their own string data. They receive plain snapshot tables, not arbitrary C# reflection or raw Unity objects.
