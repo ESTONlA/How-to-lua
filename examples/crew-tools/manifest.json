@@ -1,0 +1,8 @@
+{
+  "id": "crew-tools-example",
+  "name": "Crew Tools",
+  "version": "1.0.0",
+  "author": "Estonia",
+  "entry": "main.lua",
+  "hostOnly": true
+}

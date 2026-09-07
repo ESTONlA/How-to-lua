@@ -65,4 +65,10 @@ LuaExecution.Run(sample, commands["bonus"], DynValue.NewTable(new Table(sample))
 Check(money == 25, "bundled example command awards configured amount");
 LuaExecution.Run(sample, action);
 Check(action.Type == DataType.Function, "bundled example registers callable native action");
+EventTests.Run(Check, Reject);
+HookContractTests.Run(repo, Check);
+CrewExampleTests.Run(repo, Check);
+string eventDocs = File.ReadAllText(Path.Combine(repo, "wiki", "Events.md"));
+foreach (string name in GameEventCatalog.Names)
+    Check(eventDocs.Contains("| `" + name + "` |"), "wiki documents event: " + name);
 Console.WriteLine($"{passed} checks passed.");

@@ -2,7 +2,7 @@
 
 **How to Lua** is a BepInEx framework for How to Fish that loads small, manifest-based Lua mods. It uses MoonSharp, so players do not need to install Lua separately.
 
-Lua mods run through a deliberately restricted API. They can react to supported game events, register host commands, schedule work, send chat messages, award shared money, and save their own string data. They do not receive arbitrary C# reflection or raw Unity objects.
+Lua mods run through a deliberately restricted API. They can react to 27 game events, query players and world state, heal/feed/teleport living players, register host commands and native buttons, schedule work, send chat, award shared money, and save their own string data. They receive plain snapshot tables, not arbitrary C# reflection or raw Unity objects.
 
 ## Install
 
@@ -11,7 +11,7 @@ Lua mods run through a deliberately restricted API. They can react to supported 
 3. Create or copy Lua mod folders into `How to Fish/BepInEx/plugins/HowToLua/mods/`.
 4. Start the game. Open Pause and select **Lua Mods** to see loaded mods and reload them.
 
-The framework is installed on the host for host-side game events, money rewards, and commands. Mods with `"hostOnly": false` can load on clients too, but the initial API does not provide client-only gameplay hooks.
+The host installs the framework and scripts for gameplay events and actions. Other players receive the game's normal network updates and do not need Lua for these features. Mods with `"hostOnly": false` can run local timers and buttons on clients, but cannot execute host actions or receive host gameplay events.
 
 ## Lua Mod Layout
 
@@ -54,13 +54,13 @@ htf.command("bonus", function(args)
 end)
 ```
 
-Host uses `/bonus` in game chat. Commands are intentionally host-only in this first release.
+The host uses `/bonus` in game chat. Commands are intentionally host-only.
 
 ## Current API
 
 | Function | Purpose |
 | --- | --- |
-| `htf.on(event, callback)` | Subscribe to `fish_hooked`, `creature_killed`, `boss_killed`, or `server_command`. |
+| `htf.on(event, callback)` | Subscribe to one of 27 events; see [Events](wiki/Events.md). |
 | `htf.command(name, callback)` | Register a host chat command, used as `/name args`. |
 | `htf.button(label, callback)` | Add a native button under Lua Mods > Mods / Actions. |
 | `htf.after(seconds, callback)` | Run a callback once after a delay. |
@@ -71,10 +71,25 @@ Host uses `/bonus` in game chat. Commands are intentionally host-only in this fi
 | `htf.set_data(key, value)` | Persist a string value for this Lua mod. |
 | `htf.is_host()` | Return whether the local game is hosting. |
 | `htf.log(message)` | Write a message to BepInEx output. |
+| `htf.players.list()` / `get(steam_id)` | Get player snapshots, including health, fullness and position. |
+| `htf.players.heal(steam_id, amount)` / `feed(steam_id, amount)` | Restore living players' health or fullness on the host. |
+| `htf.players.teleport(steam_id, x, y, z, yaw)` | Send a living player a native teleport; yaw is optional. |
+| `htf.world.info()` / `spawn_position()` / `boss()` | Read session, spawn and current boss snapshots. |
+| `htf.economy.balance()` | Read the authoritative shared balance on the host. |
 
 See the [GitHub Wiki](https://github.com/ESTONlA/How-to-lua/wiki) or [local Wiki source](wiki/Home.md) for the API documentation.
 
-Version 0.1.1 is an early beta. The build and Lua execution tests pass; multiplayer behavior and the native menu still need an in-game test.
+Version **0.2.0** is an early beta. Automated Lua, event-queue and installed-game patch-contract checks pass. The new hooks and player actions still need in-game multiplayer testing.
+
+### 0.2.0 Hook Expansion
+
+- 21 additional events: player vitals/death/revival, item pickup/drop/sale/cooking/skins, money changes, boss spawn/despawn, server lifecycle/save requests, and island changes/load completion.
+- Player/world APIs with validated host-only actions. Steam IDs stay strings to avoid precision loss.
+- Independent snapshot tables for each mod; queued callbacks with a 1024-event capacity and 128-event per-frame dispatch limit.
+- Separate `Runtime`, `Api`, `Game`, and `UI` code modules. No gameplay logic in the plugin bootstrap.
+- Optional `examples/crew-tools`: sale logging, saved per-player death counts, heal/feed crew buttons, `/luacrew`, and `/luareturn steam_id`.
+
+The six existing events keep their original leading arguments. Some receive optional extra snapshot arguments. Events are now queued, not synchronous; they cannot cancel the underlying game action. Keep both DLLs together and fully restart after upgrading. Existing scripts and configuration do not need replacing.
 
 ### 0.1.1 Compatibility Fix
 
@@ -85,10 +100,10 @@ The package now uses MoonSharp's `net40-client` binary, fixing the `System.Colle
 - Reloading removes all currently registered Lua mods, commands, callbacks, and timers before reading the mod folders again.
 - Errors are isolated to the Lua mod that caused them and shown in both BepInEx output and the **Lua Mods** panel.
 - Data is stored by BepInEx at `BepInEx/config/HowToLua.<mod-id>.cfg`.
-- The first release exposes strings and numbers to Lua. It intentionally does not expose game objects, networking internals, Harmony, file I/O, or arbitrary CLR types.
+- The API exposes primitives and plain tables. It intentionally does not expose game objects, networking internals, Harmony, file I/O, or arbitrary CLR types.
 - Player events are `player_joined(name, steam_id)` and `player_left(name, steam_id)`. Steam IDs are strings to preserve precision. The host checks the roster once per second.
 - Optional manifest `dependencies` is an array of exact mod IDs. Missing, failed, or cyclic dependencies block loading. Version ranges and shared Lua globals are not supported.
-- Startup code and `on_load()` run when scripts load, including at the main menu. Host-only event callbacks and timers remain idle until hosting. Use `htf.is_host()` before logic requiring a session.
+- Startup code and `on_load()` run when scripts load, including at the main menu. Gameplay callbacks and host-only timers wait for hosting. The `server_stopped` notification is delivered after hosting ends. Use `htf.is_host()` before logic requiring a session.
 - Lua execution is limited to 50,000 instructions per entry/callback. Only install scripts you trust: this is an in-process runtime with no hard memory quota.
 - This beta does not yet expose prefab spawning, arbitrary game hooks, custom networking, JSON data tables, or client-required mod negotiation.
 
@@ -104,6 +119,8 @@ dotnet build HowToLua.csproj -c Release
 
 Copy the framework DLL and its MoonSharp dependency from `bin/Release` into the BepInEx plugin folder.
 
-Run `dotnet run --project tests/SmokeTests.csproj -c Release` for Lua smoke tests. `./Build-Package.ps1` builds an installable ZIP containing both DLLs, the MoonSharp license, README, and an optional example.
+Run `dotnet run --project tests/SmokeTests.csproj -c Release` for Lua, snapshot, argument validation, event queue, coroutine completion, example and installed-game Harmony target tests. `./Build-Package.ps1` runs these checks and builds `release/HowToLua-0.2.0.zip` containing both DLLs, the MoonSharp license, README, and optional examples.
+
+See [Architecture](wiki/Architecture.md) for where to extend hooks and APIs. Build paths currently reference this machine's Steam install; adjust the project references and test game path for a different installation.
 
 `MoonSharp.Reference.props` selects `lib/net40-client/MoonSharp.Interpreter.dll` for both the plugin and tests. Keep this explicit reference: NuGet's automatically selected `netstandard1.6` build requires facade assemblies absent from the game. Packaging also runs a fresh Windows PowerShell check against the staged DLL to verify its references and execute Lua table/callback code under .NET Framework.
