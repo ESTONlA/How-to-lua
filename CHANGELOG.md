@@ -2,6 +2,42 @@
 
 Notable changes to How to Lua, newest first.
 
+## 0.3.0
+
+### Added
+
+- 59 Lua functions, increasing the public API from 20 to 79, in separate item, catalog, inventory, combat, server, boat, progression, NPC and boss modules.
+- Item definition catalogs, paginated/nearby instance queries, bounded native spawning, loose-item removal, cooking, skins, interaction state, damage and score bonuses.
+- Inventory snapshots, slot selection, bait selection/grants, pocket costs/unlocks, held-item queries, weapon/melee stats and upgrades.
+- Player damage, poison and fire actions; authoritative poison/fire snapshot fields; host-local player lookup.
+- Boat status, unlocks, radar, motors, skins, driver ejection and return-to-spawn.
+- Server difficulty, friendly fire, one-shot settings, save requests, shared-money affordability/give/spend.
+- Island lists, travel/unlocks, water queries, game-rule snapshots, NPC locations/quest progress, grill unlocks and boss scaling/immortality controls.
+- 23 events, increasing the catalog from 27 to 50: item spawn/despawn, fish release, five inventory changes, four boat changes, five equipment changes, difficulty, boss max health/immortality, NPC talk/quest progress and grill unlock.
+- Optional World Tools example with `/luacatalog`, `/luaspawn definition_id`, boat status/save buttons and boat/quest logging.
+- Full Gameplay API wiki reference, updated installation/examples/troubleshooting and compiled API/private-field contract tests.
+
+### Safety and Compatibility
+
+- Spawning is shared-budgeted to 8 attempts/second and 128 live tracked items; Lua reload does not reset the live-item limit. Bosses, player bodies and quest-marked prefabs are excluded.
+- Loose-item cleanup refuses protected items and anything held, stored or attached to a rod/bird. Upgrade and skin indices are checked before native calls.
+- Save requests have a shared 5-second cooldown; travel requests have a shared 2-second cooldown and require a loaded world.
+- Steam IDs and instance network IDs use canonical decimal strings. Definition and inventory indices remain bounded integer numbers.
+- Detailed creature health reads the authoritative synchronized value rather than the game's client-cached property.
+- Original APIs/event arguments, native pause-menu styling and classic MoonSharp interpreter compatibility are preserved.
+- Gameplay bridge classes declare a marker attribute so new domains participate in the measured coverage report. Native-menu wiring is still excluded.
+
+### Coverage and Verification
+
+- Direct game-method integration increased from 41/4,737 (0.87%) to 229/4,737 (4.83%) against the installed game build. This measures direct calls/reads and hook targets, not feature completeness or runtime test coverage.
+- 405 automated checks pass, including all 39 Harmony targets, parameter injections, four private-field dependencies, 79 compiled callback registrations, all 59 new API documentation entries and all 50 documented events.
+- Packaging regenerates coverage and includes changelog/local wiki pages alongside optional examples. The staged interpreter is checked under Windows .NET Framework.
+- In-game multiplayer behavior, remote replication and persistence still require live testing. A successful native request does not promise disk completion or remote receipt. Test gameplay-changing scripts on a spare save.
+
+### Upgrade
+
+Replace both DLLs and fully restart How to Fish. Preserve existing Lua scripts and configuration. Examples are optional; install World Tools separately to enable its commands/buttons. Bait, pocket, boat and weapon upgrade APIs are grants, not shop purchases: scripts must charge money separately when desired.
+
 ## 0.2.0
 
 ### Added

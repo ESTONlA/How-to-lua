@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace HowToLua;
 
+[LuaBridge]
 internal static class GameSnapshots
 {
     internal static int Balance => MoneyManager.Instance && MoneyManager.Instance.IsServerInitialized ? MoneyManager.Instance._money.Value : MoneyManager.Money;
@@ -15,6 +16,8 @@ internal static class GameSnapshots
             ["name"] = player.SteamName ?? "Unknown", ["steam_id"] = player.SteamID.ToString(),
             ["client_id"] = player.Owner?.ClientId.ToString(), ["health"] = player.Vitals ? player.Vitals.Health : 0,
             ["fullness"] = player.Vitals ? player.Vitals.Fullness : 0, ["afk"] = player.IsAfk,
+            ["poison"] = player.Vitals ? player.Vitals._syncedPoison.Value : 0,
+            ["fire"] = player.Vitals ? player.Vitals._syncedFire.Value : 0,
             ["position"] = Position(player.Transform ? player.Transform.position : player.transform.position)
         };
     }

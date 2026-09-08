@@ -28,6 +28,16 @@ internal sealed class LuaHost
         Directory.CreateDirectory(modsPath);
     }
     private readonly GameEventQueue _events = new();
+    private readonly HashSet<Item> _spawned = new();
+    private readonly WindowBudget _spawnBudget = new();
+    internal readonly WindowBudget SaveBudget = new();
+    internal readonly WindowBudget TravelBudget = new();
+    internal bool AllowSpawn()
+    {
+        _spawned.RemoveWhere(i => !i || i.IsDeinitializing || i.IsDestroying);
+        return IsHost && _spawned.Count < 128 && _spawnBudget.Take(Time.unscaledTime, 8, 1);
+    }
+    internal void TrackSpawn(Item item) { if (item) _spawned.Add(item); }
     private bool _warnedQueue;
     internal void Dispose() { _mods.Clear(); _commands.Clear(); Actions.Clear(); _events.Clear(); }
     internal void DispatchEvents()
@@ -46,6 +56,7 @@ internal sealed class LuaHost
     internal void ReloadMods()
     {
         _events.Clear();
+        _warnedQueue = false;
         _mods.Clear();
         _commands.Clear();
         Actions.Clear();

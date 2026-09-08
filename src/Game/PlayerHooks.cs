@@ -2,6 +2,7 @@ using HarmonyLib;
 
 namespace HowToLua;
 
+[LuaBridge]
 internal static class PlayerHooks
 {
     [HarmonyPatch(typeof(PlayerVitals), "OnHealthChange")]

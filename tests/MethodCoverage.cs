@@ -10,13 +10,6 @@ using Mono.Cecil;
 
 internal static class MethodCoverage
 {
-    // Only gameplay bridges count, not native-menu wiring or framework infrastructure.
-    private static readonly HashSet<string> BridgeTypes = new(StringComparer.Ordinal)
-    {
-        "CoreApi", "PlayerApi", "WorldApi", "GameSnapshots", "GameHooks",
-        "PlayerHooks", "ItemHooks", "WorldHooks"
-    };
-
     internal static void Generate(string repo)
     {
         const string gamePath = @"C:\Program Files (x86)\Steam\steamapps\common\How to Fish\How to Fish\How to Fish_Data\Managed\Assembly-CSharp.dll";
@@ -42,7 +35,7 @@ internal static class MethodCoverage
         {
             var root = type;
             while (root.DeclaringType != null) root = root.DeclaringType;
-            if (root.Namespace != "HowToLua" || !BridgeTypes.Contains(root.Name)) continue;
+            if (root.Namespace != "HowToLua" || !root.CustomAttributes.Any(a => a.AttributeType.FullName == "HowToLua.LuaBridgeAttribute")) continue;
 
             foreach (var attribute in type.CustomAttributes.Where(a => a.AttributeType.FullName == "HarmonyLib.HarmonyPatch"))
             {

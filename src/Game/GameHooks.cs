@@ -8,6 +8,7 @@ using UnityEngine;
 
 namespace HowToLua;
 
+[LuaBridge]
 internal sealed class GameHooks : IDisposable
 {
     private static GameHooks _active;
@@ -125,6 +126,8 @@ internal sealed class GameHooks : IDisposable
     {
         private static void Postfix(Item __instance, FishingRod prev, FishingRod next, bool asServer)
         {
+            if (asServer && prev && !next && __instance is Fish)
+                Capture("fish_released", () => new object[] { GameSnapshots.Name(__instance), GameSnapshots.ItemInfo(__instance) });
             if (asServer && !prev && next && __instance is Fish fish)
             {
                 _active?.OnFishHooked(fish);

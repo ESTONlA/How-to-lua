@@ -2,6 +2,7 @@ using MoonSharp.Interpreter;
 
 namespace HowToLua;
 
+[LuaBridge]
 internal static class WorldApi
 {
     internal static void Register(Script script, Table api, LuaHost host)

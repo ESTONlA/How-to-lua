@@ -1,0 +1,8 @@
+{
+  "id": "world-tools-example",
+  "name": "World Tools",
+  "version": "1.0.0",
+  "author": "Estonia",
+  "entry": "main.lua",
+  "hostOnly": true
+}

@@ -32,6 +32,20 @@ internal static class EventTests
         foreach (double invalid in new[] { double.NaN, double.PositiveInfinity, -1, 101 })
             reject(() => LuaArguments.Number(DynValue.NewNumber(invalid), "amount", 0, 100), "invalid amount rejected: " + invalid);
         reject(() => LuaArguments.Number(DynValue.NewString("50"), "amount", 0, 100), "numeric arguments require a number");
+        check(LuaArguments.Integer(DynValue.NewNumber(255), "ID", 0, 255) == 255, "byte index upper bound accepted");
+        reject(() => LuaArguments.Integer(DynValue.NewNumber(1.5), "ID", 0, 255), "fractional item/index IDs rejected");
+        reject(() => LuaArguments.Integer(DynValue.NewNumber(256), "ID", 0, 255), "out of bounds byte IDs rejected");
+        check(LuaArguments.Boolean(DynValue.True, "enabled") && !LuaArguments.Boolean(DynValue.False, "enabled"), "boolean settings accept true and false");
+        reject(() => LuaArguments.Boolean(DynValue.NewString("true"), "enabled"), "text does not silently enable settings");
+        check(LuaArguments.NetworkId(DynValue.NewString("0")) == "0", "network object zero is a valid string ID");
+        reject(() => LuaArguments.NetworkId(DynValue.NewNumber(1)), "network IDs must be strings");
+        reject(() => LuaArguments.NetworkId(DynValue.NewString("01")), "noncanonical network ID rejected");
+        reject(() => LuaArguments.NetworkId(DynValue.NewString("65536")), "out of range network ID rejected");
+        var budget = new WindowBudget();
+        for (int i = 0; i < 8; i++) check(budget.Take(0, 8, 1), "spawn window allows slot " + i);
+        check(!budget.Take(0.9, 8, 1), "spawn flood denied inside window");
+        check(budget.Take(1, 8, 1), "spawn budget resets at exact boundary");
+        check(budget.Take(-1, 8, 1), "budget handles clock reset");
 
         var queue = new GameEventQueue();
         queue.Add("first", Array.Empty<object>());
@@ -64,6 +78,6 @@ internal static class EventTests
         observed.MoveNext();
         ((IDisposable)observed).Dispose();
         check(disposed && !completed, "cancelled island routine does not report completion");
-        check(GameEventCatalog.Names.Count == 27, "27 supported event names");
+        check(GameEventCatalog.Names.Count == 50, "50 supported event names");
     }
 }

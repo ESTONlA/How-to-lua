@@ -5,11 +5,13 @@ using UnityEngine;
 
 namespace HowToLua;
 
+[LuaBridge]
 internal static class PlayerApi
 {
     internal static void Register(Script script, Table api, LuaHost host)
     {
         var players = new Table(script);
+        players.Set("local_player", DynValue.NewCallback((c, a) => LuaValues.From(script, host.IsHost ? GameSnapshots.PlayerInfo(Player.LocalPlayer) : null)));
         players.Set("list", DynValue.NewCallback((context, args) => LuaValues.From(script,
             host.IsHost ? PlayerManager.Players.Where(IsReady).Select(p => (object)GameSnapshots.PlayerInfo(p)).ToArray() : Array.Empty<object>())));
         players.Set("get", DynValue.NewCallback((context, args) =>

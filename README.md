@@ -1,31 +1,34 @@
 # How to Lua
 
 [![Game method integration](coverage/method-coverage.svg)](coverage/README.md)
-[![Game events: 27](https://img.shields.io/badge/game_events-27-0891b2?style=flat-square)](wiki/Events.md)
-[![Hook targets: 17](https://img.shields.io/badge/hook_targets-17-6366f1?style=flat-square)](wiki/Architecture.md)
+[![Lua functions: 79](https://img.shields.io/badge/Lua_functions-79-16a34a?style=flat-square)](wiki/Gameplay-API.md)
+[![Game events: 50](https://img.shields.io/badge/game_events-50-0891b2?style=flat-square)](wiki/Events.md)
+[![Hook targets: 39](https://img.shields.io/badge/hook_targets-39-6366f1?style=flat-square)](wiki/Architecture.md)
 
 # [Changelog](CHANGELOG.md) | [License](LICENSE)
 **How to Lua** is a BepInEx framework for How to Fish that loads small, manifest-based Lua mods. It uses MoonSharp, so players do not need to install Lua separately.
 
-Lua mods run through a deliberately restricted API. They can react to 27 game events, query players and world state, heal/feed/teleport living players, register host commands and native buttons, schedule work, send chat, award shared money, and save their own string data. They receive plain snapshot tables, not arbitrary C# reflection or raw Unity objects.
+Lua mods run through a deliberately restricted API. Version **0.3.0** exposes **79 functions and 50 events** for players, items, inventories, combat, boats, bosses, NPC quests, islands and server rules, alongside commands, native buttons, timers and persistent string data. Scripts receive plain snapshot tables, not arbitrary C# reflection or raw Unity objects.
 
 ## Game Coverage
 
 The badge measures **direct game-method coverage**: unique methods called/read or hooked by the Lua gameplay bridges, divided by the non-constructor methods declared in the installed game's `Assembly-CSharp.dll`.
 
-The generated [coverage report](coverage/README.md) lists the exact count, percentage and every integrated method. The framework currently exposes **27 events**, including **17 method hooks**, plus player/world APIs.
+The generated [coverage report](coverage/README.md) lists the exact count, percentage and every integrated method. Against the measured game build, integration increased from **41/4,737 (0.87%)** in 0.2.0 to **229/4,737 (4.83%)** in 0.3.0. The framework has **39 Harmony hook targets**; some supply multiple events, while lifecycle events also come from polling.
 
 | Game system | Available to Lua |
 | --- | --- |
-| Players | Join/leave, vitals, death/revival, player lookup, healing, feeding and teleporting. |
-| Fishing and creatures | Rod attachments, creature health/deaths, boss spawn/death/despawn and boss snapshots. |
-| Items | Holder changes, sales, cooking, skin changes and item snapshots. |
-| Economy | Balance changes, balance queries and shared-money rewards. |
-| World and sessions | Host start/stop, save requests, island changes/load completion and spawn/world queries. |
+| Players | Join/leave, vitals, death/revival, lookup, healing, feeding, teleporting, damage and status effects. |
+| Fishing and bosses | Hook/release, creature health/deaths, boss lifecycle, immortality and crew-scaled health/damage queries. |
+| Items and catalog | Prefab definitions, bounded spawning, nearby/list queries, loose-item removal, cooking, skins and score bonuses. |
+| Inventory and combat | Slots, held items, bait stocks, pocket unlocks, weapon stats, attachment events and native upgrades. |
+| Boats | Status, driver events/ejection, motor upgrades, skins, radar and return-to-spawn. |
+| Economy and server | Balance changes, affordability, give/spend, save requests, difficulty, friendly fire and one-shot rules. |
+| World and NPCs | Island travel/unlocks, load events, water queries, NPC locations, quest progress and grill unlocks. |
 
 This counts actual methods, not documentation. Property accessors and generated networking methods are included in the denominator; Unity/FishNet DLLs are not. Reading a property or observing a hook counts as direct integration, not unrestricted Lua access to that method. Internal calls made by the game are not automatically marked supported. Field reads and native-menu wiring do not increase the method count.
 
-It is **not feature-completion, line coverage or a runtime-test percentage**. Each system is only partially exposed; prefab spawning, arbitrary object editing and custom networking are not implemented.
+It is **not feature-completion, line coverage or a runtime-test percentage**. Each system is only partially exposed. Arbitrary object editing, boss spawning, custom networking and unrestricted game-method calls are not implemented.
 
 Recalculate from the current game and framework DLLs after adding support:
 
@@ -91,7 +94,7 @@ The host uses `/bonus` in game chat. Commands are intentionally host-only.
 
 | Function | Purpose |
 | --- | --- |
-| `htf.on(event, callback)` | Subscribe to one of 27 events; see [Events](wiki/Events.md). |
+| `htf.on(event, callback)` | Subscribe to one of 50 events; see [Events](wiki/Events.md). |
 | `htf.command(name, callback)` | Register a host chat command, used as `/name args`. |
 | `htf.button(label, callback)` | Add a native button under Lua Mods > Mods / Actions. |
 | `htf.after(seconds, callback)` | Run a callback once after a delay. |
@@ -110,7 +113,18 @@ The host uses `/bonus` in game chat. Commands are intentionally host-only.
 
 See the [GitHub Wiki](https://github.com/ESTONlA/How-to-lua/wiki) or [local Wiki source](wiki/Home.md) for the API documentation.
 
-Version **0.2.0** is an early beta. Automated Lua, event-queue and installed-game patch-contract checks pass. The new hooks and player actions still need in-game multiplayer testing.
+The table above covers the original 20 functions. The [Gameplay API](wiki/Gameplay-API.md) documents all **59 additions** with argument bounds, return values and snapshot fields, including `htf.items`, `catalog`, `inventory`, `combat`, `server`, `boat`, `npcs`, `bosses`, and extensions to players/world/economy.
+
+Version **0.3.0** is an early beta. **405 automated checks pass**, including Lua examples, event queues, all 39 installed-game patch targets, private-field contracts and API documentation checks. These are not a substitute for in-game multiplayer testing; new gameplay actions and remote replication remain unverified in a live session.
+
+### 0.3.0 Gameplay Expansion
+
+- 59 additional functions in separate domain modules; 23 additional events for inventory, equipment, boats, NPC quests, item lifecycle and difficulty.
+- Host-only native gameplay mutations with validated IDs and bounds. Network object IDs and Steam IDs remain strings.
+- Item spawning: at most 8 attempts per second and 128 live framework-spawned items across scripts. Bosses, player bodies and quest-marked prefabs are blocked. Cleanup refuses held, stored, rod-attached, bird-held or protected items.
+- World-save requests have a shared 5-second cooldown; island travel has a shared 2-second cooldown and refuses during loading. Native disk completion and remote-client receipt are not guaranteed by a true return value.
+- Optional `examples/world-tools`: `/luacatalog`, `/luaspawn definition_id`, **Show boat status**, **Save world**, and boat/quest event logging. No automatic gameplay changes on load. Copy it into `mods` to enable it; test on a spare save.
+- Native grants such as bait, pockets and upgrades do not charge money automatically. Scripts can pair them with the economy API.
 
 ### 0.2.0 Hook Expansion
 
@@ -136,7 +150,7 @@ The package now uses MoonSharp's `net40-client` binary, fixing the `System.Colle
 - Optional manifest `dependencies` is an array of exact mod IDs. Missing, failed, or cyclic dependencies block loading. Version ranges and shared Lua globals are not supported.
 - Startup code and `on_load()` run when scripts load, including at the main menu. Gameplay callbacks and host-only timers wait for hosting. The `server_stopped` notification is delivered after hosting ends. Use `htf.is_host()` before logic requiring a session.
 - Lua execution is limited to 50,000 instructions per entry/callback. Only install scripts you trust: this is an in-process runtime with no hard memory quota.
-- This beta does not yet expose prefab spawning, arbitrary game hooks, custom networking, JSON data tables, or client-required mod negotiation.
+- Bounded item-prefab spawning is supported, but arbitrary game hooks, custom networking, JSON data tables and client-required mod negotiation are not. Lua's instruction budget does not meter the native cost of API calls; avoid polling large catalogs every frame.
 
 ## Documentation Maintenance
 
@@ -150,7 +164,7 @@ dotnet build HowToLua.csproj -c Release
 
 Copy the framework DLL and its MoonSharp dependency from `bin/Release` into the BepInEx plugin folder.
 
-Run `dotnet run --project tests/SmokeTests.csproj -c Release` for Lua, snapshot, argument validation, event queue, coroutine completion, example and installed-game Harmony target tests. `./Build-Package.ps1` runs these checks and builds `release/HowToLua-0.2.0.zip` containing both DLLs, the MoonSharp license, README, and optional examples.
+Run `dotnet run --project tests/SmokeTests.csproj -c Release` for Lua, snapshot, argument validation, event queue, coroutine completion, example and installed-game contract tests. `./Build-Package.ps1` runs these checks, regenerates coverage and builds `release/HowToLua-0.3.0.zip` containing both DLLs, licenses, README, changelog, coverage, local wiki pages and optional examples.
 
 See [Architecture](wiki/Architecture.md) for where to extend hooks and APIs. Build paths currently reference this machine's Steam install; adjust the project references and test game path for a different installation.
 

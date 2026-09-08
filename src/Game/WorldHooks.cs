@@ -3,6 +3,7 @@ using HarmonyLib;
 
 namespace HowToLua;
 
+[LuaBridge]
 internal static class WorldHooks
 {
     [HarmonyPatch(typeof(OnlineIslandManager), "OnIslandChange")]

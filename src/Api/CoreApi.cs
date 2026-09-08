@@ -3,6 +3,7 @@ using MoonSharp.Interpreter;
 
 namespace HowToLua;
 
+[LuaBridge]
 internal static class CoreApi
 {
     internal static void Register(LuaMod mod, LuaHost framework)

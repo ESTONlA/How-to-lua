@@ -1,16 +1,52 @@
 {
   "metric": "Direct game-method integration",
-  "frameworkVersion": "0.2.0",
+  "frameworkVersion": "0.3.0",
   "gameAssembly": "Assembly-CSharp",
   "gameAssemblySha256": "9BFC0A0F95085D64CA13A6A1943A31B0241472DF6361BC780AEFA8AFB79A59F2",
-  "frameworkAssemblySha256": "0359FD119BBBB2C3D9D3F1B66641D73F53094E0FE33BBF848DB7774297A5B7FD",
-  "integratedMethods": 41,
+  "frameworkAssemblySha256": "342E6F9A5C0F0397388F10638B44C2F89DFD967A5C0D7E21F7863AFC17BAA648",
+  "integratedMethods": 229,
   "totalMethods": 4737,
-  "percentage": 0.8655,
+  "percentage": 4.8343,
   "rules": "Unique direct calls/reads and Harmony targets in gameplay bridge classes divided by all non-constructor methods declared in Assembly-CSharp.dll. Includes accessors, generated methods and embedded libraries; excludes other assemblies. No transitive calls, UI wiring, field reads or line coverage.",
   "methods": [
     {
+      "signature": "Attachments Weapon::get_Attachments()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "BaitInfo NPCQuest::get_BaitToReceive()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "Bird Item::get_BirdHolder()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "Boat BoatManager::get_Boat()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
       "signature": "BossType Creature::get_BossType()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "BulletUpgrade Attachments::GetCurBulletUpgrade()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "BulletUpgrade Attachments::GetNextBulletUpgrade(System.Byte)",
       "reasons": [
         "Direct gameplay bridge call/read"
       ]
@@ -22,13 +58,109 @@
       ]
     },
     {
+      "signature": "DeadPlayer Item::get_DeadPlayer()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "Difficulty ServerSettings::get_Difficulty()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "FishNet.Connection.NetworkConnection RigidbodySync::get_SyncedSimulator()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "Fishable ItemInfoWeight::get_Fishable()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "FishingRod Item::get_AttachedRod()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "Item GameInfo::GetSpawnable(System.Byte)",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "Item ItemManager::SpawnNewItem(Item,UnityEngine.Vector3,UnityEngine.Quaternion)",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "Item PlayerHolding::get_HeldItem()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "ItemType Item::get_Type()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "NPC NPCManager::IDToNpc(System.Byte)",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "Player Boat::get_Driver()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
       "signature": "Player Item::get_LastHolder()",
       "reasons": [
         "Direct gameplay bridge call/read"
       ]
     },
     {
+      "signature": "Player Item::get_SyncedHolder()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "PlayerHolding Player::get_Holding()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "PlayerInventory Player::get_Inventory()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
       "signature": "PlayerVitals Player::get_Vitals()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "QuestType NPCQuest::get_Type()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "RigidbodySync Item::get_RigidbodySync()",
       "reasons": [
         "Direct gameplay bridge call/read"
       ]
@@ -46,6 +178,96 @@
       ]
     },
     {
+      "signature": "SharpnessUpgrade Melee::GetCurSharpness()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "SharpnessUpgrade Melee::GetNextSharpnessUpgrade(System.Byte)",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "SkinPreset Boat::get_SkinPreset()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "SkinPreset Item::get_SkinPreset()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Boolean Attachments::get_ExtendedMag()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Boolean Attachments::get_LaserSight()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Boolean BaitInfo::get_RequireReelingToCatch()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Boolean Boat::get_BoatRadarUnlocked()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Boolean Boat::get_BoatUnlocked()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Boolean BossManager::get_IsImmortal()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Boolean Creature::get_ExcludeFromJournal()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Boolean Creature::get_IgnoreDeathByWater()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Boolean Creature::get_IsDead()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Boolean Creature::get_IsDrip()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Boolean Creature::get_IsEndangered()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
       "signature": "System.Boolean IslandManager::get_IsInitialized()",
       "reasons": [
         "Direct gameplay bridge call/read"
@@ -58,7 +280,169 @@
       ]
     },
     {
+      "signature": "System.Boolean Item::get_CanPickUp()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Boolean Item::get_HasBeenHeld()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Boolean Item::get_HasPlayerHolder()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Boolean Item::get_IgnoredByMoneyNpc()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Boolean Item::get_IgnoredBySeagulls()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Boolean Item::get_IsDestroying()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Boolean Item::get_IsInInventory()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Boolean Item::get_IsInteractable()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Boolean Item::get_IsQuestItem()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Boolean NPCManager::NpcIsHoldingItem(System.Byte)",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Boolean NPCManager::get_FinalBossKilled()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Boolean NPCManager::get_GrillUnlocked()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Boolean NPCQuest::get_OnlyCreatures()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
       "signature": "System.Boolean Player::get_IsAfk()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Boolean PlayerInventory::HasItemInInventory(Item)",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Boolean PlayerInventory::HasPocket(System.Int32)",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Boolean RigidbodySync::get_IsFloating()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Boolean RigidbodySync::get_IsStationary()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Boolean RigidbodySync::get_OnBoat()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Boolean ServerSettings::get_OneShotEnabled()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Boolean ServerSettings::get_UseFriendlyFire()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Byte Attachments::get_AmmoType()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Byte Attachments::get_BarrelAttachment()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Byte Attachments::get_Sight()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Byte Boat::get_CurSkin()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Byte Boat::get_MotorIndex()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Byte GameInfo::GetIndexOfBait(BaitInfo)",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Byte Item::get_CurSkin()",
       "reasons": [
         "Direct gameplay bridge call/read"
       ]
@@ -70,7 +454,103 @@
       ]
     },
     {
+      "signature": "System.Byte Melee::get_SharpnessIndex()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Byte NPC::GetServerProgression(System.Byte)",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Byte NPC::get_ID()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Byte NPCQuest::get_IslandToUnlock()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Byte NPCQuest::get_TotalItems()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
       "signature": "System.Byte OnlineIslandManager::get_CurIsland()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Byte OnlineIslandManager::get_MaxIslandUnlocked()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Byte PlayerInventory::get_CurBait()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Byte PlayerInventory::get_ExtraSlots()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Collections.Generic.Dictionary\u00602\u003CUnityEngine.Transform,Item\u003E ItemManager::get_Items()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Collections.Generic.IReadOnlyList\u00601\u003CAttachmentInfo\u003E GameInfo::get_AllAttachments()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Collections.Generic.IReadOnlyList\u00601\u003CBaitInfo\u003E GameInfo::get_AllBaits()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Collections.Generic.IReadOnlyList\u00601\u003CItemSkin\u003E SkinPreset::get_Skins()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Collections.Generic.IReadOnlyList\u00601\u003CNPCQuest\u003E NPC::get_Quests()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Collections.Generic.KeyValuePair\u00602\u003CSystem.Boolean,System.Single\u003E WaterManager::GetWaterInfo(UnityEngine.Vector3)",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Collections.Generic.List\u00601\u003CItem\u003E NPCQuest::get_QuestItems()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Collections.Generic.List\u00601\u003CItemInfoWeight\u003E BaitInfo::get_ItemWeights()",
       "reasons": [
         "Direct gameplay bridge call/read"
       ]
@@ -82,6 +562,78 @@
       ]
     },
     {
+      "signature": "System.Int32 BaitInfo::get_Cost()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Int32 BossManager::GetBossDamage(System.Int32,System.Single)",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Int32 BossManager::GetBossMaxHp(System.Int32,System.Single)",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Int32 BossManager::get_BossMaxHp()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Int32 BulletUpgrade::get_Cost()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Int32 BulletUpgrade::get_Damage()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Int32 Creature::get_FullnessToRestore()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Int32 Creature::get_HpToRestore()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Int32 Creature::get_MaxHp()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Int32 GameInfo::get_Seed()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Int32 Item::get_Cost()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Int32 Item::get_DefaultWorth()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
       "signature": "System.Int32 Item::get_TotalWorth()",
       "reasons": [
         "Direct gameplay bridge call/read"
@@ -89,6 +641,12 @@
     },
     {
       "signature": "System.Int32 MoneyManager::get_Money()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Int32 PlayerInventory::GetExtraSlotCost(System.Byte)",
       "reasons": [
         "Direct gameplay bridge call/read"
       ]
@@ -106,6 +664,180 @@
       ]
     },
     {
+      "signature": "System.Int32 SharpnessUpgrade::get_Cost()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Int32 SharpnessUpgrade::get_Damage()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Int32 Weapon::get_Damage()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Single BaitInfo::get_LostOnBaitChance()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Single Boat::get_VelocityMag()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Single Creature::get_BossHpMultiplier()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Single Creature::get_BossTimeInSeconds()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Single GameInfo::get_BoatProjectileForce()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Single GameInfo::get_DefaultVelDamageMulti()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Single GameInfo::get_HeadShotDamageMulti()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Single GameInfo::get_MaxAliveCreatureVel()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Single GameInfo::get_MaxItemVel()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Single GameInfo::get_PlayerDeathForceMultiFromCreature()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Single GameInfo::get_PlayerKillForce()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Single Item::get_BettingMultiplier()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Single Item::get_Buoyancy()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Single Item::get_Cookness()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Single Item::get_KillScoreMultiplier()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Single Item::get_ModelHeight()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Single Item::get_RandomizedWeight()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Single ItemInfoWeight::get_Weight()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Single ServerSettings::get_DamageMultiplier()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Single ServerSettings::get_HealthMultiplier()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Single Weapon::get_AdsFov()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Single Weapon::get_AdsSpeedDamping()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.String AttachmentInfo::get_DescriptionLocalized()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.String AttachmentInfo::get_NameLocalized()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.String BaitInfo::get_Description()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.String BaitInfo::get_NameLocalized()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
       "signature": "System.String Item::GetName()",
       "reasons": [
         "Direct gameplay bridge call/read"
@@ -118,7 +850,121 @@
       ]
     },
     {
+      "signature": "System.UInt32 BossManager::get_BossLeavesTick()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.UInt32 BossManager::get_BossSpawnTick()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.UInt32 BossManager::get_BossTotalTimeInTicks()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
       "signature": "System.UInt64 Player::get_SteamID()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Void Attachments::OnAmmoChange(System.Byte,System.Byte,System.Boolean)",
+      "reasons": [
+        "Event/command hook"
+      ]
+    },
+    {
+      "signature": "System.Void Attachments::OnBarrelChange(System.Byte,System.Byte,System.Boolean)",
+      "reasons": [
+        "Event/command hook"
+      ]
+    },
+    {
+      "signature": "System.Void Attachments::OnLaserSightChange(System.Boolean,System.Boolean,System.Boolean)",
+      "reasons": [
+        "Event/command hook"
+      ]
+    },
+    {
+      "signature": "System.Void Attachments::OnMagChange(System.Boolean,System.Boolean,System.Boolean)",
+      "reasons": [
+        "Event/command hook"
+      ]
+    },
+    {
+      "signature": "System.Void Attachments::OnSightChange(System.Byte,System.Byte,System.Boolean)",
+      "reasons": [
+        "Event/command hook"
+      ]
+    },
+    {
+      "signature": "System.Void Attachments::UpgradeBullets()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Void Boat::OnBoatRadarChange(System.Boolean,System.Boolean,System.Boolean)",
+      "reasons": [
+        "Event/command hook"
+      ]
+    },
+    {
+      "signature": "System.Void Boat::OnDriverChange(Player,Player,System.Boolean)",
+      "reasons": [
+        "Event/command hook"
+      ]
+    },
+    {
+      "signature": "System.Void Boat::OnMotorChange(System.Byte,System.Byte,System.Boolean)",
+      "reasons": [
+        "Event/command hook"
+      ]
+    },
+    {
+      "signature": "System.Void Boat::OnSkinChange(System.Byte,System.Byte,System.Boolean)",
+      "reasons": [
+        "Event/command hook"
+      ]
+    },
+    {
+      "signature": "System.Void Boat::ServerSetSkin(System.Byte)",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Void Boat::SetMotor(System.Byte)",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Void Boat::TrySetDriver(Player)",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Void Boat::UnlockBoat()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Void Boat::UnlockBoatRadar()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Void BoatManager::TryMoveBoat(UnityEngine.Vector3,UnityEngine.Quaternion)",
       "reasons": [
         "Direct gameplay bridge call/read"
       ]
@@ -130,9 +976,27 @@
       ]
     },
     {
+      "signature": "System.Void BossManager::OnBossMaxHpChange(System.Int32,System.Int32,System.Boolean)",
+      "reasons": [
+        "Event/command hook"
+      ]
+    },
+    {
       "signature": "System.Void BossManager::OnBossRemoved()",
       "reasons": [
         "Event/command hook"
+      ]
+    },
+    {
+      "signature": "System.Void BossManager::OnIsImmportalChange(System.Boolean,System.Boolean,System.Boolean)",
+      "reasons": [
+        "Event/command hook"
+      ]
+    },
+    {
+      "signature": "System.Void BossManager::ToggleImmortal(System.Boolean)",
+      "reasons": [
+        "Direct gameplay bridge call/read"
       ]
     },
     {
@@ -145,6 +1009,24 @@
       "signature": "System.Void Creature::OnHealthChange(System.Int32,System.Int32,System.Boolean)",
       "reasons": [
         "Event/command hook"
+      ]
+    },
+    {
+      "signature": "System.Void Creature::ServerChangeHp(System.Int32)",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Void Item::CookItem(System.Single)",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Void Item::DestroyItem(System.Byte,System.Byte)",
+      "reasons": [
+        "Direct gameplay bridge call/read"
       ]
     },
     {
@@ -166,9 +1048,45 @@
       ]
     },
     {
+      "signature": "System.Void Item::OnStartServer()",
+      "reasons": [
+        "Event/command hook"
+      ]
+    },
+    {
+      "signature": "System.Void Item::OnStopServer()",
+      "reasons": [
+        "Event/command hook"
+      ]
+    },
+    {
       "signature": "System.Void Item::OnSyncedHolderChange(Player,Player,System.Boolean)",
       "reasons": [
         "Event/command hook"
+      ]
+    },
+    {
+      "signature": "System.Void Item::ServerSetSkin(System.Byte)",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Void Item::SetKillscoreMultiplier(System.Single)",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Void Item::ToggleInteractable(System.Boolean)",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Void Melee::UpgradeSharpness()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
       ]
     },
     {
@@ -184,9 +1102,39 @@
       ]
     },
     {
+      "signature": "System.Void MoneyManager::RemoveMoney(System.Int32,Player)",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
       "signature": "System.Void MoneyManager::SellItem(Item)",
       "reasons": [
         "Event/command hook"
+      ]
+    },
+    {
+      "signature": "System.Void NPCManager::OnGrillUnlockedChange(System.Boolean,System.Boolean,System.Boolean)",
+      "reasons": [
+        "Event/command hook"
+      ]
+    },
+    {
+      "signature": "System.Void NPCManager::ServerOnClientSpokeToNpc(System.Byte)",
+      "reasons": [
+        "Event/command hook"
+      ]
+    },
+    {
+      "signature": "System.Void NPCManager::ServerSpeak(System.Byte,System.Byte,System.Byte,QuestLineType)",
+      "reasons": [
+        "Event/command hook"
+      ]
+    },
+    {
+      "signature": "System.Void NPCManager::UnlockGrill()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
       ]
     },
     {
@@ -196,7 +1144,85 @@
       ]
     },
     {
+      "signature": "System.Void OnlineIslandManager::TpToSpecificIsland(System.Byte)",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Void OnlineIslandManager::UnlockIsland(System.Byte)",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
       "signature": "System.Void Player::RPCTeleport(FishNet.Connection.NetworkConnection,UnityEngine.Vector3,System.Single)",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Void PlayerInventory::OnCurBaitChange(System.Byte,System.Byte,System.Boolean)",
+      "reasons": [
+        "Event/command hook"
+      ]
+    },
+    {
+      "signature": "System.Void PlayerInventory::OnCurSlotChange(System.Int32,System.Int32,System.Boolean)",
+      "reasons": [
+        "Event/command hook"
+      ]
+    },
+    {
+      "signature": "System.Void PlayerInventory::OnInventoryAmountChange(System.Byte,System.Byte,System.Boolean)",
+      "reasons": [
+        "Event/command hook"
+      ]
+    },
+    {
+      "signature": "System.Void PlayerInventory::OnItemsChange(FishNet.Object.Synchronizing.SyncDictionaryOperation,System.Byte,Item,System.Boolean)",
+      "reasons": [
+        "Event/command hook"
+      ]
+    },
+    {
+      "signature": "System.Void PlayerInventory::OnOwnedBaitChange(FishNet.Object.Synchronizing.SyncListOperation,System.Int32,System.Int32,System.Int32,System.Boolean)",
+      "reasons": [
+        "Event/command hook"
+      ]
+    },
+    {
+      "signature": "System.Void PlayerInventory::ServerBoughtBait(System.Byte)",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Void PlayerInventory::ServerSetCurBait(System.Byte)",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Void PlayerInventory::ServerSetSyncedCurSlot(System.Int32)",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Void PlayerInventory::UnlockExtraPocket(System.Byte)",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Void PlayerVitals::ApplyNewFire()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Void PlayerVitals::ApplyNewPoison()",
       "reasons": [
         "Direct gameplay bridge call/read"
       ]
@@ -238,8 +1264,15 @@
       ]
     },
     {
+      "signature": "System.Void PlayerVitals::TakeDamage(System.Int32,UnityEngine.Vector3,UnityEngine.Vector3,System.Boolean)",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
       "signature": "System.Void SaveManager::SaveServer(System.Boolean)",
       "reasons": [
+        "Direct gameplay bridge call/read",
         "Event/command hook"
       ]
     },
@@ -250,7 +1283,103 @@
       ]
     },
     {
+      "signature": "System.Void ServerSettings::OnDifficultyChange(System.Byte,System.Byte,System.Boolean)",
+      "reasons": [
+        "Event/command hook"
+      ]
+    },
+    {
+      "signature": "System.Void ServerSettings::SetDifficulty(Difficulty)",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Void ServerSettings::ToggleFriendlyFire(System.Boolean)",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "System.Void ServerSettings::ToggleOneShot()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "UnityEngine.Rigidbody Boat::get_HiddenPhysicsRig()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "UnityEngine.Transform Boat::get_DriverPos()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "UnityEngine.Transform Boat::get_VisualBoat()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "UnityEngine.Transform NPC::get_MouthPosForItems()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
       "signature": "UnityEngine.Transform Player::get_Transform()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "UnityEngine.Transform Server::get_DynamicObjectsHolder()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "UnityEngine.Vector2 BaitInfo::get_CatchTimeMinMax()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "UnityEngine.Vector2 GameInfo::get_DefaultMinMaxFishVelForDamage()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "UnityEngine.Vector3 Boat::get_AngularVelocity()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "UnityEngine.Vector3 Boat::get_Velocity()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "UnityEngine.Vector3 RigidbodySync::get_FakeAngularVelocity()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "UnityEngine.Vector3 RigidbodySync::get_FakeVelocity()",
+      "reasons": [
+        "Direct gameplay bridge call/read"
+      ]
+    },
+    {
+      "signature": "Weapon Attachments::get_Weapon()",
       "reasons": [
         "Direct gameplay bridge call/read"
       ]

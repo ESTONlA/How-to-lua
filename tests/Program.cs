@@ -74,6 +74,8 @@ Check(action.Type == DataType.Function, "bundled example registers callable nati
 EventTests.Run(Check, Reject);
 HookContractTests.Run(repo, Check);
 CrewExampleTests.Run(repo, Check);
+WorldExampleTests.Run(repo, Check);
+ApiContractTests.Run(repo, Check);
 string eventDocs = File.ReadAllText(Path.Combine(repo, "wiki", "Events.md"));
 foreach (string name in GameEventCatalog.Names)
     Check(eventDocs.Contains("| `" + name + "` |"), "wiki documents event: " + name);

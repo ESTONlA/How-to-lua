@@ -8,7 +8,7 @@ namespace HowToLua;
 [BepInProcess("How to Fish.exe")]
 public sealed class HowToLuaPlugin : BaseUnityPlugin
 {
-    internal const string PluginVersion = "0.2.0";
+    internal const string PluginVersion = "0.3.0";
     private LuaHost _host;
     private LuaMenu _menu;
     private GameHooks _hooks;

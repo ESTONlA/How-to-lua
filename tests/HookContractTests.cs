@@ -40,7 +40,7 @@ internal static class HookContractTests
             }
             patches++;
         }
-        check(patches == 17, "all 17 game patch classes checked against installed assembly");
+        check(patches == 39, "all 39 game patch classes checked against installed assembly");
         check(plugin.MainModule.GetType("HowToLua.HowToLuaPlugin").NestedTypes.Count == 0, "bootstrap no longer contains runtime, UI or hook classes");
     }
 

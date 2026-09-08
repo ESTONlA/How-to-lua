@@ -2,8 +2,27 @@ using HarmonyLib;
 
 namespace HowToLua;
 
+[LuaBridge]
 internal static class ItemHooks
 {
+    [HarmonyPatch(typeof(Item), "OnStartServer")]
+    private static class SpawnPatch
+    {
+        private static void Postfix(Item __instance)
+        {
+            GameHooks.Capture("item_spawned", () => new object[] { GameSnapshots.ItemInfo(__instance) });
+        }
+    }
+
+    [HarmonyPatch(typeof(Item), "OnStopServer")]
+    private static class DespawnPatch
+    {
+        private static void Prefix(Item __instance)
+        {
+            GameHooks.Capture("item_despawned", () => new object[] { GameSnapshots.ItemInfo(__instance) });
+        }
+    }
+
     [HarmonyPatch(typeof(Item), "OnSyncedHolderChange")]
     private static class HolderPatch
     {

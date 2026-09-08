@@ -8,6 +8,7 @@
     <Compile Include="../src/Runtime/LuaValues.cs" Link="LuaValues.cs" />
     <Compile Include="../src/Runtime/GameEventQueue.cs" Link="GameEventQueue.cs" />
     <Compile Include="../src/Runtime/ObservedRoutine.cs" Link="ObservedRoutine.cs" />
+    <Compile Include="../src/Runtime/WindowBudget.cs" Link="WindowBudget.cs" />
     <Compile Include="../src/Api/LuaArguments.cs" Link="LuaArguments.cs" />
     <Compile Include="../src/Game/GameEventCatalog.cs" Link="GameEventCatalog.cs" />
     <ProjectReference Include="../HowToLua.csproj" ReferenceOutputAssembly="false" />
